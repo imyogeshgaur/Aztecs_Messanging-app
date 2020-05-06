@@ -1,8 +1,8 @@
-import 'package:chatapp/screens/login_screen.dart';
-import 'package:chatapp/screens/registration_screen.dart';
+import 'package:chatapp/component/rounded_button.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id ='welcome_screen';
@@ -29,8 +29,7 @@ void initState(){
   controller.addListener(() {
     setState(() {
       
-    });
-    print(animation1.value);
+     });
   });
 }
 
@@ -53,9 +52,9 @@ void initState(){
                   height: 60.0
                 ),
                 ),
-                Text(
-                  'ChatterBox',
-                  style: TextStyle(
+                TypewriterAnimatedTextKit(
+                 text: ['ChatterBox'],
+                  textStyle: TextStyle(
                     fontSize: 45.0,
                     fontWeight: FontWeight.w900,
                   ),
@@ -65,45 +64,22 @@ void initState(){
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: animation2.value,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                   Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: animation3.value,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                   Navigator.pushNamed(context, RegistrationScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                  ),
-                ),
-              ),
-            ),
+            RoundedButton(
+            title:'Log In',
+            colour:animation2.value,
+            onPressed: (){
+              Navigator.pushNamed(context, LoginScreen.id);
+            },),
+             RoundedButton(
+            title:'Registration',
+            colour:animation3.value,
+            onPressed: (){
+              Navigator.pushNamed(context, RegistrationScreen.id);
+            },),
           ],
         ),
-      ),
+      ), 
     );
   }
 }
+
